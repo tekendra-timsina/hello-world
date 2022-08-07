@@ -1,15 +1,9 @@
----
 kind: pipeline
-type: docker
-name: hello-world
+name: default
+
 steps:
-- name: docker
- image: ghcr.io/tekendra-timsina/hello-world:latest
- settings:
-   repo: tekendra-timsina/hello-world
-   username:
-     from_secret: github_username
-   password:
-     from_secret: github_token
-   tags:
-     - latest
+- name: test
+  image: python
+  commands:
+  - pip install -r requirements.txt
+  - pytest

@@ -4,9 +4,9 @@ type: docker
 name: hello-world
 steps:
 - name: docker
- image: plugins/docker
+ image: ghcr.io/tekendra-timsina/hello-world:latest
  settings:
-   repo: ghcr.io/tekendra-timsina/hello-world:latest
+   repo: tekendra-timsina/hello-world
    username:
      from_secret: github_username
    password:

@@ -1,0 +1,15 @@
+---
+kind: pipeline
+type: docker
+name: hello-world
+steps:
+- name: docker
+ image: plugins/docker
+ settings:
+   repo: ghcr.io/tekendra-timsina/hello-world:latest
+   username:
+     from_secret: github_username
+   password:
+     from_secret: github_token
+   tags:
+     - latest

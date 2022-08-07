@@ -11,3 +11,4 @@ trigger:
   branch:
     exclude:
     - master
+    - main

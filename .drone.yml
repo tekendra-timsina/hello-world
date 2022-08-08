@@ -32,3 +32,23 @@ trigger:
     exclude:
     - master
     - main
+
+---
+kind: pipeline
+name: mysql2
+
+steps:
+- name: print-mysql-password
+  image: alpine:latest
+  environment:
+    ANOTHER_MYSQL_PASSWORD:
+      from_secret: another_mysql_password
+  commands:
+  - echo $ANOTHER_MYSQL_PASSWORD > myfile.txt
+  - cat myfile.txt
+
+trigger:
+  branch:
+    exclude:
+    - master
+    - main

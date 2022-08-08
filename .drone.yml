@@ -22,9 +22,10 @@ steps:
 - name: print-mysql-password
   image: alpine:latest
   environment:
-    - from_secret: mysql_password
+    MYSQL_PASSWORD:
+      from_secret: mysql_password
   commands:
-  - echo mysql_password
+  - echo $MYSQL_PASSWORD
 
 trigger:
   branch:

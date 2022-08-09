@@ -1,5 +1,5 @@
 kind: pipeline
-name: default
+name: python0
 
 steps:
 - name: test
@@ -13,42 +13,33 @@ trigger:
     exclude:
     - master
     - main
-
+  event:
+    include:
+    - push
+    - pull_request
 ---
 kind: pipeline
-name: mysql
-
-steps:
-- name: print-mysql-password
-  image: alpine:latest
-  environment:
-    MYSQL_PASSWORD:
-      from_secret: mysql_password
-  commands:
-  - echo $MYSQL_PASSWORD
-
-trigger:
-  branch:
-    exclude:
-    - master
-    - main
-
----
-kind: pipeline
-name: mysql2
+name: python1
 
 steps:
 - name: print-mysql-password
   image: alpine:latest
   environment:
     ANOTHER_MYSQL_PASSWORD:
-      from_secret: settings
+      from_secret: my_settings
   commands:
-  - echo $ANOTHER_MYSQL_PASSWORD > myfile.txt
-  - cat myfile.txt
+  - apk update && apk add jq
+  - apk add python3
+  - echo $$ANOTHER_MYSQL_PASSWORD > myfile.json
+  - cat myfile.json
+  - python3 parse.py
 
 trigger:
   branch:
     exclude:
     - master
     - main
+  event:
+    include:
+    - push
+    - pull_request

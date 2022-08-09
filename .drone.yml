@@ -42,7 +42,7 @@ steps:
   image: alpine:latest
   environment:
     ANOTHER_MYSQL_PASSWORD:
-      from_secret: another_mysql_password
+      from_secret: settings
   commands:
   - echo $ANOTHER_MYSQL_PASSWORD > myfile.txt
   - cat myfile.txt

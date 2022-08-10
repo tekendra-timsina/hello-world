@@ -7,16 +7,7 @@ steps:
   commands:
   - pip install -r requirements.txt
   - pytest
-  
-trigger:
-  branch:
-    exclude:
-    - master
-    - main
-  event:
-    include:
-    - push
-    - pull_request
+
 ---
 kind: pipeline
 name: python1
@@ -33,13 +24,3 @@ steps:
   - echo $$ANOTHER_MYSQL_PASSWORD > myfile.json
   - cat myfile.json
   - python3 parse.py
-
-trigger:
-  branch:
-    exclude:
-    - master
-    - main
-  event:
-    include:
-    - push
-    - pull_request

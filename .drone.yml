@@ -21,6 +21,6 @@ steps:
   commands:
   - apk update && apk add jq
   - apk add python3
-  - export ANOTHER_MYSQL_PASSWORD=$HOME/myfile.json
-  - echo $pwd
+  - echo ANOTHER_MYSQL_PASSWORD | base64 --decode > myfile.json
+  - echo mydile.json
   - python3 parse.py

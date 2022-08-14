@@ -17,7 +17,7 @@ steps:
   image: alpine:latest
   environment:
     ANOTHER_MYSQL_PASSWORD:
-      from_secret: my_settings
+      from_secret: ANOTHER_MYSQL_PASSWORD
   commands:
   - apk update && apk add jq
   - apk add python3

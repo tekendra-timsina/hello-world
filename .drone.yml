@@ -25,5 +25,4 @@ steps:
   - echo $ANOTHER_MYSQL_PASSWORD
   - mkdir /run/secrets/
   - echo -n "$ANOTHER_MYSQL_PASSWORD" > /run/secrets/myfile.json
-  - cat myfile.json
   - python3 parse.py

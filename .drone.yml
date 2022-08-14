@@ -20,6 +20,7 @@ steps:
       from_secret: ANOTHER_MYSQL_PASSWORD
   commands:
   - apk update && apk add jq
+  apk add --update coreutils
   - apk add python3
   - echo $ANOTHER_MYSQL_PASSWORD | base64 --decode
   - echo mydile.json

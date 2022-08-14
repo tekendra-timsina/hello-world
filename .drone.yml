@@ -23,6 +23,6 @@ steps:
   - apk add --update coreutils
   - apk add python3
   - echo $ANOTHER_MYSQL_PASSWORD
-  - echo $ANOTHER_MYSQL_PASSWORD > myfile.json
+  - echo -n "$ANOTHER_MYSQL_PASSWORD" > myfile.json
   - echo myfile.json
   - python3 parse.py

@@ -1,14 +1,14 @@
-kind: pipeline
-name: python0
+# kind: pipeline
+# name: python0
 
-steps:
-- name: test
-  image: python
-  commands:
-  - pip install -r requirements.txt
-  - pytest
+# steps:
+# - name: test
+#   image: python
+#   commands:
+#   - pip install -r requirements.txt
+#   - pytest
 
----
+# ---
 kind: pipeline
 name: python1
 
@@ -17,12 +17,16 @@ steps:
   image: alpine:latest
   environment:
     ANOTHER_MYSQL_PASSWORD:
-      from_secret: ANOTHER_MYSQL_PASSWORD
+      from_secret: my_secrets
   commands:
   - apk update && apk add jq
   - apk add --update coreutils
   - apk add python3
-  - echo $ANOTHER_MYSQL_PASSWORD
-  - mkdir /run/secrets/
-  - echo -n "$ANOTHER_MYSQL_PASSWORD" > /run/secrets/myfile.json
+  - echo "export $ANOTHER_MYSQL_PASSWORD" > myfile.json
+  - cat myfile.json
   - python3 parse.py
+
+trigger:
+  branch:
+  - main
+  - testi

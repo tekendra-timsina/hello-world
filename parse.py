@@ -1,7 +1,5 @@
 import json
+import os
 
-file_path = 'myfile.json'
-
-with open(file_path, 'r') as f:
-    data = json.load(f)
-    print(data)
+with open("settings.json", "w") as f:
+    json.dump(json.loads(os.getenv('TEST_SECRET_2')), f)

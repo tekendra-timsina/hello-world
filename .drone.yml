@@ -10,7 +10,13 @@
 
 # ---
 kind: pipeline
+type: docker
 name: python1
+
+
+platform:
+  os: linux
+  arch: arm64
 
 steps:
 - name: print-mysql-password
@@ -22,7 +28,7 @@ steps:
   - apk update && apk add jq
   - apk add --update coreutils
   - apk add python3
-  - echo "export $ANOTHER_MYSQL_PASSWORD" > myfile.json
+  - echo "export SECRET=$ANOTHER_MYSQL_PASSWORD" > myfile.json
   - cat myfile.json
   - python3 parse.py
 

@@ -6,19 +6,17 @@ steps:
 - name: print-mysql-password
   image: alpine:latest
   environment:
-    ANOTHER_MYSQL_PASSWORD:
-      from_secret: my_secrets
     TEST_SECRET:
       from_secret: testsecret
-    TEST_SECRET_2:
-      from_secret: another_test_secret
   commands:
-  - apk update && apk add jq
-  - apk add --update coreutils
-  - apk add python3
-  - python3 parse.py
-  - cat settings.json
-
+    [
+      "apk update && apk add jq",
+      "apk add --update coreutils",
+      "apk add python3",
+      "mkdir -p /run/secrets",
+      'echo {\"TEST_SECRET\" : \"$TEST_SECRET\"} > /run/secrets/settings.json',
+      "python3 parse.py"
+  ]
 trigger:
   branch:
   - testing_branch
